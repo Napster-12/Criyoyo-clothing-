@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criyoyo Clothing - Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #000, #001a0f);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      color: #00ff88;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: #fff;
+      font-weight: 300;
+      display: block;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      letter-spacing: 3px;
+    }
+
+    .tagline {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 15px;
+      color: #ccc;
+    }
+
+    .ecom-badge {
+      display: inline-block;
+      border: 1px solid #00ff88;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 20px;
+      color: #00ff88;
+    }
+
+    .coming {
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .time-box {
+      background: #111;
+      border: 1px solid #00ff88;
+      padding: 15px 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,136,0.2);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-weight: bold;
+    }
+
+    .subscribe {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    input[type="email"] {
+      padding: 12px;
+      width: 100%;
+      max-width: 400px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      background: #00ff88;
+      color: #000;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 200px;
+    }
+
+    button:hover {
+      background: #00cc6a;
+    }
+
+    .features {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      color: #aaa;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* Tablet */
+    @media (min-width: 600px) {
+      .subscribe {
+        flex-direction: row;
+      }
+
+      input[type="email"] {
+        width: 65%;
+      }
+
+      button {
+        width: auto;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="logo">
+      CRIYOYO
+      <span>CLOTHING</span>
+    </div>
+
+    <div class="tagline">Premium Streetwear & Fashion</div>
+    <div class="ecom-badge">E-Commerce Store Launching Soon</div>
+
+    <div class="coming">Coming Soon</div>
+
+    <div class="countdown">
+      <div class="time-box"><span id="days">00</span>Days</div>
+      <div class="time-box"><span id="hours">00</span>Hours</div>
+      <div class="time-box"><span id="minutes">00</span>Minutes</div>
+      <div class="time-box"><span id="seconds">00</span>Seconds</div>
+    </div>
+
+    <div class="subscribe">
+      <input type="email" placeholder="Enter your email for early access">
+      <button>Notify Me</button>
+    </div>
+
+    <div class="features">
+      <span>✔ Online Shopping</span>
+      <span>✔ Secure Payments</span>
+      <span>✔ Fast Delivery</span>
+    </div>
+
+    <div class="footer">© 2026 Criyoyo Clothing. All rights reserved.</div>
+  </div>
+
+  <script>
+    const launchDate = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.querySelector(".countdown").innerHTML = "We Are Live! Shop Now";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
